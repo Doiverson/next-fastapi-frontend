@@ -1,5 +1,3 @@
-import { resolve } from "path";
-
 let request: IDBOpenDBRequest;
 let db: IDBDatabase;
 let version = 1;
