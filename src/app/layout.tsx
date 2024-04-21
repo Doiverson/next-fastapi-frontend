@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
 import './globals.css';
 
+import { Providers } from '@/contexts/providers';
 import { cn } from '@/lib/utils';
+import Navbar from '@/components/navbar';
 
 const fontSans = FontSans({
     subsets: ['latin'],
@@ -20,9 +22,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
-                {children}
+                <Providers attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+                    <Navbar />
+                    {children}
+                </Providers>
             </body>
         </html>
     );

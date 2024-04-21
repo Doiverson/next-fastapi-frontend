@@ -7,7 +7,6 @@ services:
             context: .
             dockerfile: Dockerfile
 
-        # do port mapping so that we can access the app from the browser
         ports:
             - 3000:3000
 
@@ -19,6 +18,10 @@ services:
                 - path: ./next.config.js
                   action: rebuild
                 - path: ./package-lock.json
+                  action: rebuild
+                - path: ./components.json
+                  action: rebuild
+                - path: ./app/globals.css
                   action: rebuild
                 - path: .
                   target: /app

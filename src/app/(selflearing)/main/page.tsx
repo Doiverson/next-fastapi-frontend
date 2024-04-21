@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { getUsers } from '@/app/utils/utils';
+import { getUsers } from '@/utils/utils';
 import { useEffect, useState } from 'react';
 import { Stores, User, initDB, getData, addData, deleteData } from '../../db';
 
