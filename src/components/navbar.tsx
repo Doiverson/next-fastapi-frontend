@@ -1,5 +1,5 @@
 'use client';
-import React, { MouseEventHandler, useState } from 'react';
+import React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { Switch } from '@/components/ui/switch';
@@ -18,7 +18,7 @@ function Navbar({ className }: { className?: string }) {
     return (
         <div
             className={cn(
-                'fixed top-0 inset-x-0 w-full h-12 mx-auto px-4 z-50 flex items-center justify-end',
+                'fixed inset-x-0 top-0 z-50 mx-auto flex h-12 w-full items-center justify-end px-4',
                 className
             )}
         >

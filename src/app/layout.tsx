@@ -5,6 +5,7 @@ import './globals.css';
 import { Providers } from '@/contexts/providers';
 import { cn } from '@/lib/utils';
 import Navbar from '@/components/navbar';
+import { Toaster } from '@/components/ui/toaster';
 
 const fontSans = FontSans({
     subsets: ['latin'],
@@ -23,10 +24,21 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
-                <Providers attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <body
+                className={cn(
+                    'min-h-screen bg-background font-sans antialiased',
+                    fontSans.variable
+                )}
+            >
+                <Providers
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
                     <Navbar />
                     {children}
+                    <Toaster />
                 </Providers>
             </body>
         </html>
