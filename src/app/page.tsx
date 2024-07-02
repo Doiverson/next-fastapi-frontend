@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { set, z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import useSwr, { mutate } from 'swr';
 
 import Card from '@/components/Card';
 import { Button } from '@/components/ui/button';
@@ -45,15 +46,13 @@ const Main: React.FC = () => {
         },
     });
 
-    const fetchData = async () => {
-        const response = await fetch('api/posts');
+    const fetchData = async (url: string) => {
+        const response = await fetch(`${url}`);
         const data = await response.json();
         setPosts(data);
     };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    const { data, error } = useSwr('api/posts', fetchData);
 
     const onSubmit = async (data: z.infer<typeof FormSchema>) => {
         const res = await fetch('api/posts', {
@@ -81,19 +80,17 @@ const Main: React.FC = () => {
     };
 
     const handleDeletePost = async (id: string) => {
-        const res = await fetch(`/api/posts/${id}`, {
+        await fetch(`/api/posts/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-
-        if (res.ok) {
-            fetchData();
-        } else {
-            console.error('Failed to submit post:', res.status);
-        }
+        mutate('api/posts');
     };
+
+    if (error) return <div>Failed to load</div>;
+    if (!data) return <div>Loading...</div>;
 
     return (
         <AuroraBackground>
