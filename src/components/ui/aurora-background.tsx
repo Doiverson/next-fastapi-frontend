@@ -14,10 +14,10 @@ export const AuroraBackground = ({
     ...props
 }: AuroraBackgroundProps) => {
     return (
-        <main style={{ marginTop: 48 }}>
+        <main className="pt-12">
             <div
                 className={cn(
-                    'transition-bg relative flex  h-[100vh] flex-col items-center justify-center bg-zinc-50  text-slate-950 dark:bg-zinc-900',
+                    'transition-bg h-screen-48 relative  flex flex-col items-center justify-center bg-zinc-50  text-slate-950 dark:bg-zinc-900',
                     className
                 )}
                 {...props}

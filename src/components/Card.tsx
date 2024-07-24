@@ -15,23 +15,26 @@ type Props = {
     title: string;
     content: string;
     descriotion?: string;
-    footer?: string;
     className?: string;
-    onClick: (id: string) => void;
+    handleDelete: (id: string) => void;
+    handleClickDetail: (id: string) => void;
 };
 
 const Card = (props: Props) => {
-    const { id, className, title, content, descriotion, footer, onClick } =
-        props;
-
-    const handleOnClick = (id: string) => {
-        onClick(id);
-    };
+    const {
+        id,
+        className,
+        title,
+        content,
+        descriotion,
+        handleDelete,
+        handleClickDetail,
+    } = props;
 
     return (
-        <ShadCard key={id} className={cn('relative w-64', className)}>
+        <ShadCard key={id} className={cn('relative w-full', className)}>
             <Button
-                onClick={() => handleOnClick(id)}
+                onClick={() => handleDelete(id)}
                 className="absolute right-2 top-2"
             >
                 X
@@ -45,11 +48,14 @@ const Card = (props: Props) => {
             <CardContent>
                 <p>{content}</p>
             </CardContent>
-            {footer && (
-                <CardFooter>
-                    <p>{footer}</p>
-                </CardFooter>
-            )}
+            <CardFooter>
+                <Button
+                    onClick={() => handleClickDetail(id)}
+                    className="w-full"
+                >
+                    Detail
+                </Button>
+            </CardFooter>
         </ShadCard>
     );
 };

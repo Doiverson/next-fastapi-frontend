@@ -18,7 +18,7 @@ function Navbar({ className }: { className?: string }) {
     return (
         <div
             className={cn(
-                'fixed inset-x-0 top-0 z-50 mx-auto flex h-12 w-full items-center justify-end px-4',
+                'fixed inset-x-0 top-0 z-50 mx-auto flex h-12 w-full items-center justify-end bg-teal-900 px-4',
                 className
             )}
         >

@@ -89,6 +89,9 @@ const config = {
                 'accordion-up': 'accordion-up 0.2s ease-out',
                 aurora: 'aurora 60s linear infinite',
             },
+            height: {
+                'screen-48': 'calc(100vh - 48px)', // 48px is the height of the navbar
+            },
         },
     },
     plugins: [require('tailwindcss-animate'), addVariablesForColors],
