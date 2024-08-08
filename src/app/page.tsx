@@ -106,14 +106,9 @@ const Main: React.FC = () => {
                             name="title"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="dark:text-white">
-                                        Title
-                                    </FormLabel>
+                                    <FormLabel>Title</FormLabel>
                                     <FormControl>
-                                        <Input
-                                            className="dark:text-white"
-                                            {...field}
-                                        />
+                                        <Input {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -124,14 +119,9 @@ const Main: React.FC = () => {
                             name="content"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel className="dark:text-white">
-                                        Content
-                                    </FormLabel>
+                                    <FormLabel>Content</FormLabel>
                                     <FormControl>
-                                        <Textarea
-                                            className="resize-none dark:text-white"
-                                            {...field}
-                                        />
+                                        <Textarea {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>

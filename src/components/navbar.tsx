@@ -1,8 +1,22 @@
 'use client';
-import React from 'react';
+import React, { useSyncExternalStore } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { Switch } from '@/components/ui/switch';
+
+function subscribe(callback: () => void) {
+    window.addEventListener('online', callback);
+    window.addEventListener('offline', callback);
+
+    return () => {
+        window.removeEventListener('online', callback);
+        window.removeEventListener('offline', callback);
+    };
+}
+
+function getSnapshot() {
+    return window.navigator.onLine;
+}
 
 function Navbar({ className }: { className?: string }) {
     const { setTheme, resolvedTheme } = useTheme();
@@ -15,6 +29,8 @@ function Navbar({ className }: { className?: string }) {
         }
     };
 
+    const isOnline = useSyncExternalStore(subscribe, getSnapshot);
+
     return (
         <div
             className={cn(
@@ -22,6 +38,7 @@ function Navbar({ className }: { className?: string }) {
                 className
             )}
         >
+            <span className="mr-4">{isOnline ? 'Online' : 'Offline'}</span>
             <Switch id="airplane-mode" onCheckedChange={onChangeDarkMode} />
         </div>
     );

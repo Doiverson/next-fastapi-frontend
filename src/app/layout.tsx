@@ -33,11 +33,11 @@ export default function RootLayout({
             >
                 <Providers
                     attribute="class"
-                    defaultTheme="system"
+                    defaultTheme="dark"
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <AuroraBackground>
+                    <AuroraBackground className="dark: text-dark-theme">
                         <Navbar />
                         {children}
                         <Toaster />
