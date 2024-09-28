@@ -33,7 +33,6 @@ const Detail = () => {
     });
 
     const fileRef = form.register('file');
-    console.log(fileRef);
 
     const { data, error, isLoading } = useSWR(
         `/api/details/${detail_id}`,
@@ -43,31 +42,20 @@ const Detail = () => {
         }
     );
 
-    const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-        console.log(data);
+    const onSubmit = async (stagedFile: z.infer<typeof FormSchema>) => {
         const formData = new FormData();
-        formData.append('image', data.file[0]);
-        const file = formData.get('image') as File;
-        const arrayBuffer = await file.arrayBuffer();
-        const buffer = Buffer.from(arrayBuffer);
+        formData.append('file', stagedFile.file[0]);
+        console.log(formData.get('file'));
 
-        // await new Promise((resolve, reject) => {
-        //     cloudinary.uploader
-        //         .upload_stream(
-        //             {
-        //                 tags: ['nextjs-server-actions-upload-sneakers'],
-        //                 upload_preset: 'nextjs-server-actions-upload',
-        //             },
-        //             function (error, result) {
-        //                 if (error) {
-        //                     reject(error);
-        //                     return;
-        //                 }
-        //                 resolve(result);
-        //             }
-        //         )
-        //         .end(buffer);
-        // });
+        fetch('/api/upload', {
+            method: 'POST',
+            body: formData,
+        });
+
+        // const data = await res.json();
+
+        // we will return the uploaded image URL from the API to the client
+        // console.log(data.imgUrl);
     };
 
     if (error) return <div>Failed to load</div>;
