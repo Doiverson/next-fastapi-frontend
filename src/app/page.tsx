@@ -1,13 +1,16 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 
+// libraries
 import { set, z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import useSwr, { mutate } from 'swr';
 import { useRouter } from 'next/navigation';
 
+// components
 import Card from '@/components/Card';
+import Dialog from '@/components/Dialog';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import {
@@ -35,6 +38,9 @@ interface Post {
 }
 
 const Main: React.FC = () => {
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [postToDelete, setPostToDelete] = useState<string | null>(null);
+
     const { toast } = useToast();
     const router = useRouter();
 
@@ -79,11 +85,27 @@ const Main: React.FC = () => {
         }
     };
 
-    const handleDeletePost = async (id: string) => {
-        await fetch(`/api/posts/${id}`, {
+    const handleDeletePost = async () => {
+        await fetch(`/api/posts/${postToDelete}`, {
             method: 'DELETE',
         });
         mutate('api/posts');
+        setIsOpen(false);
+        setPostToDelete(null);
+        toast({
+            title: 'Post deleted successfully!',
+            description: 'Your post has been deleted.',
+        });
+    };
+
+    const handleClickDelete = (id: string) => {
+        setIsOpen(true);
+        setPostToDelete(id);
+    };
+
+    const handleClickCancel = () => {
+        setIsOpen(false);
+        setPostToDelete(null);
     };
 
     const handleClickDetail = (id: string) => {
@@ -138,11 +160,20 @@ const Main: React.FC = () => {
                         key={index}
                         title={post.title}
                         content={post.content}
-                        handleDelete={handleDeletePost}
+                        handleDelete={handleClickDelete}
                         handleClickDetail={handleClickDetail}
                     />
                 ))}
             </div>
+            <Dialog
+                title="Are you absolutely sure?"
+                description="This action cannot be undone. This will permanently delete your post."
+                isOpen={isOpen}
+                buttonCancel="Cancel"
+                buttonOk="Delete"
+                handleClickCancel={handleClickCancel}
+                handleDeletePost={handleDeletePost}
+            />
         </div>
     );
 };
