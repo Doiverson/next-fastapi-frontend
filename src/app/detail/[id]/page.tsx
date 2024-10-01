@@ -42,6 +42,8 @@ const Detail = () => {
         }
     );
 
+    console.log(data);
+
     const onSubmit = async (stagedFile: z.infer<typeof FormSchema>) => {
         const formData = new FormData();
         formData.append('file', stagedFile.file[0]);

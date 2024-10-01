@@ -1,13 +1,4 @@
 import React from 'react';
-import { cn } from '@/lib/utils';
-import {
-    Card as ShadCard,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card';
 
 import {
     DropdownMenu,
@@ -86,37 +77,6 @@ const Card = (props: Props) => {
                 </div>
             </CardBody>
         </CardContainer>
-        // <ShadCard key={id} className={cn('relative w-full', className)}>
-        //     <Button
-        //         onClick={() => handleDelete(id)}
-        //         className="absolute right-2 top-2"
-        //     >
-        //         X
-        //     </Button>
-        //     <CardHeader>
-        //         <CardTitle>{title}</CardTitle>
-        //         {descriotion && (
-        //             <CardDescription>{descriotion}</CardDescription>
-        //         )}
-        //     </CardHeader>
-        //     <CardContent>
-        //         <CldImage
-        //             width="600"
-        //             height="600"
-        //             src="shit_app/ynp3stq7c66j9upnzgi9"
-        //             alt="post image"
-        //         />
-        //         <p>{content}</p>
-        //     </CardContent>
-        //     <CardFooter>
-        //         <Button
-        //             onClick={() => handleClickDetail(id)}
-        //             className="w-full"
-        //         >
-        //             Detail
-        //         </Button>
-        //     </CardFooter>
-        // </ShadCard>
     );
 };
 

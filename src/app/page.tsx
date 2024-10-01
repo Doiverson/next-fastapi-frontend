@@ -80,6 +80,7 @@ const Main: React.FC = () => {
                     </pre>
                 ),
             });
+            form.reset();
         } else {
             console.error('Failed to submit post:', res.status);
         }

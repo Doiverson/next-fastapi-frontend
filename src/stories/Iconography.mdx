@@ -1,0 +1,13 @@
+import { Meta, Title, IconGallery, IconItem } from '@storybook/blocks';
+import * as HeroIcons from '@heroicons/react/24/outline';
+
+
+<Title>Heroicons (Outline)</Title>
+
+<IconGallery>
+  {Object.entries(HeroIcons).map(([name, Icon]) => (
+    <IconItem name={name} key={name}>
+      <Icon className="size-6" />
+    </IconItem>
+  ))}
+</IconGallery>
