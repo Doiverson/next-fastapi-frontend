@@ -28,13 +28,13 @@ import Spinner from '@/components/spinner';
 
 const FormSchema = z.object({
     title: z.string(),
-    content: z.string(),
+    description: z.string(),
 });
 
 interface Post {
     id: string;
     title: string;
-    content: string;
+    description: string;
 }
 
 const Main: React.FC = () => {
@@ -55,7 +55,7 @@ const Main: React.FC = () => {
         resolver: zodResolver(FormSchema),
         defaultValues: {
             title: '',
-            content: '',
+            description: '',
         },
     });
 
@@ -65,7 +65,12 @@ const Main: React.FC = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify({
+                ...data,
+                detail: {
+                    tags: 'Detail description for the new post',
+                },
+            }),
         });
 
         if (res.ok) {
@@ -139,10 +144,10 @@ const Main: React.FC = () => {
                         />
                         <FormField
                             control={form.control}
-                            name="content"
+                            name="description"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Content</FormLabel>
+                                    <FormLabel>Description</FormLabel>
                                     <FormControl>
                                         <Textarea {...field} />
                                     </FormControl>
@@ -160,7 +165,7 @@ const Main: React.FC = () => {
                         id={post.id}
                         key={index}
                         title={post.title}
-                        content={post.content}
+                        content={post.description}
                         handleDelete={handleClickDelete}
                         handleClickDetail={handleClickDetail}
                     />
