@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import Navbar from '@/components/navbar';
 import { Toaster } from '@/components/ui/toaster';
 import { AuroraBackground } from '@/components/ui/aurora-background';
+import { SidebarMenu } from '@/components/SidebarMenu';
 
 export const metadata: Metadata = {
     title: 'Shit App',
@@ -37,11 +38,13 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <AuroraBackground className="dark: text-dark-theme">
-                        <Navbar />
-                        {children}
-                        <Toaster />
-                    </AuroraBackground>
+                    <Navbar />
+                    <SidebarMenu className="pt-12">
+                        <AuroraBackground className="dark: text-dark-theme">
+                            {children}
+                        </AuroraBackground>
+                    </SidebarMenu>
+                    <Toaster />
                 </Providers>
             </body>
         </html>
