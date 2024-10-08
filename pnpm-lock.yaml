@@ -60,10 +60,10 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
-        specifier: ^18.3.1
+        specifier: ^18
         version: 18.3.1
       react-dom:
-        specifier: ^18.3.1
+        specifier: ^18
         version: 18.3.1(react@18.3.1)
       react-dropzone:
         specifier: ^14.2.9
@@ -118,10 +118,10 @@ importers:
         specifier: ^20
         version: 20.16.10
       '@types/react':
-        specifier: ^18.3.11
+        specifier: ^18
         version: 18.3.11
       '@types/react-dom':
-        specifier: ^18.3.0
+        specifier: ^18
         version: 18.3.0
       autoprefixer:
         specifier: ^10.0.1
@@ -136,7 +136,7 @@ importers:
         specifier: ^0.9.0
         version: 0.9.0(eslint@8.57.1)(typescript@5.6.2)
       postcss:
-        specifier: ^8
+        specifier: ^8.4.47
         version: 8.4.47
       prettier:
         specifier: ^3.2.5
