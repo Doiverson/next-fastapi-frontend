@@ -1,4 +1,5 @@
-export default function middleware(request) {
-    console.log('Middleware is called');
-    // Middleware logic
+import { NextRequest } from 'next/server';
+
+export default function middleware(request: NextRequest) {
+  // Middleware logic
 }
