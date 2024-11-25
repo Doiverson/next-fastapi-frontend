@@ -6,24 +6,8 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-
         ports:
             - 3000:3000
-
-        # use docker compose to watch for changes and rebuild the container
-        develop:
-            watch:
-                - path: ./package.json
-                  action: rebuild
-                - path: ./next.config.js
-                  action: rebuild
-                - path: ./package-lock.json
-                  action: rebuild
-                - path: ./components.json
-                  action: rebuild
-                - path: ./app/globals.css
-                  action: rebuild
-                - path: .
-                  target: /app
-                  action: sync
-# reference: https://www.youtube.com/watch?v=GFgJkfScVNU&t=3048s&ab_channel=JavaScriptMastery
+        volumes:
+            - .:/app
+            - /app/node_modules

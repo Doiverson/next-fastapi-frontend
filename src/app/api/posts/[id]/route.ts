@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function DELETE(
-    request: NextRequest,
-    { params }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     const response = await fetch(`http://localhost:8000/posts/${params.id}`, {
         method: 'DELETE',
         headers: {
