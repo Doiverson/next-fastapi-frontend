@@ -11,3 +11,8 @@ services:
         volumes:
             - .:/app
             - /app/node_modules
+        networks:
+            - next-fastapi-backend_dev-network
+networks:
+    next-fastapi-backend_dev-network:
+        external: true
